@@ -8,6 +8,7 @@ import NoResultFound from "../assets/result-not-found-.png";
 import { Link } from "react-router-dom";
 import PostHeader from "./PostHeader";
 import Footer from "./Footer";
+import { Skeleton, Box } from "@mui/material";
 const Home = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filterRestaurants, setFilterRestaurants] = useState([]);
@@ -42,6 +43,76 @@ const Home = () => {
       handleSearch();
     }
   };
+  if (filterRestaurants.length === 0) {
+    return (
+      <>
+        <Skeleton
+          className=" w-[90%] px-4 py-4 pt-9 pb-9 m-10"
+          variant="rectangular"
+          height={118}
+        />
+        <div className="flex w-full flex-wrap space-x-14 space-y-12">
+          <div></div>
+          <div className="w-72">
+            <Skeleton variant="rectangular" width={210} height={118} />
+            <Box sx={{ pt: 0.5 }}>
+              <Skeleton />
+              <Skeleton width="60%" />
+            </Box>
+          </div>
+          <div className="w-72">
+            <Skeleton variant="rectangular" width={210} height={118} />
+            <Box sx={{ pt: 0.5 }}>
+              <Skeleton />
+              <Skeleton width="60%" />
+            </Box>
+          </div>
+          <div className="w-72">
+            <Skeleton variant="rectangular" width={210} height={118} />
+            <Box sx={{ pt: 0.5 }}>
+              <Skeleton />
+              <Skeleton width="60%" />
+            </Box>
+          </div>
+          <div className="w-72">
+            <Skeleton variant="rectangular" width={210} height={118} />
+            <Box sx={{ pt: 0.5 }}>
+              <Skeleton />
+              <Skeleton width="60%" />
+            </Box>
+          </div>
+          <div className="w-72">
+            <Skeleton variant="rectangular" width={210} height={118} />
+            <Box sx={{ pt: 0.5 }}>
+              <Skeleton />
+              <Skeleton width="60%" />
+            </Box>
+          </div>
+          <div className="w-72">
+            <Skeleton variant="rectangular" width={210} height={118} />
+            <Box sx={{ pt: 0.5 }}>
+              <Skeleton />
+              <Skeleton width="60%" />
+            </Box>
+          </div>
+          <div className="w-72">
+            <Skeleton variant="rectangular" width={210} height={118} />
+            <Box sx={{ pt: 0.5 }}>
+              <Skeleton />
+              <Skeleton width="60%" />
+            </Box>
+          </div>
+          <div className="w-72">
+            <Skeleton variant="rectangular" width={210} height={118} />
+            <Box sx={{ pt: 0.5 }}>
+              <Skeleton />
+              <Skeleton width="60%" />
+            </Box>
+          </div>
+        </div>
+      </>
+    );
+  }
   return (
     <div>
       <PostHeader />
@@ -71,6 +142,7 @@ const Home = () => {
       {/* <div className="grid grid-cols-2 gap-2 px-4 md:grid md:grid-cols-4 md:gap-4 mt-[2rem] justify-items-center w-[100%vw]"> */}
       <div className="flex w-full flex-wrap space-x-14 space-y-12">
         <div></div>
+        {/* {!filterRestaurants ? <h1>filterRestaurants !!!! Not there</h1>:""} */}
         {searching ? (
           filterRestaurants.map((restaurant) => {
             return (
