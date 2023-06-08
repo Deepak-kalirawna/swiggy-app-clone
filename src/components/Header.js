@@ -34,14 +34,7 @@ const Header = () => {
           to="/cart"
           className="mr-10 flex items-center text-black no-underline hover:text-orange-400 cursor-pointer"
         >
-          <Badge
-            badgeContent={numberOfCartItems}
-            // anchorOrigin={{
-            //   vertical: "top",
-            //   horizontal: "left",
-            // }}
-            color="warning"
-          >
+          <Badge badgeContent={numberOfCartItems} showZero color="warning">
             <ShoppingCartIcon />{" "}
           </Badge>
           <span className="ml-3">Cart</span>

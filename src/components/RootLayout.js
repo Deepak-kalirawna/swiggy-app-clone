@@ -9,11 +9,6 @@ const RootLayout = () => {
     <>
       <Header />
       <Outlet />
-      {location.pathname === "/cart" || location.pathname === "/order" ? (
-        ""
-      ) : (
-        <Footer />
-      )}
     </>
   );
 };

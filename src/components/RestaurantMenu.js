@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import StarIcon from "@mui/icons-material/StarRate";
 import Menu from "./Menu";
+import Skeleton from "@mui/material/Skeleton";
 const RestaurantMenu = () => {
   const params = useParams();
   const restaurant = useRestaurantMenu(params.restaurantId);
@@ -11,7 +12,20 @@ const RestaurantMenu = () => {
 
   const basicInfo = restaurant?.cards[0]?.card?.card?.info;
   return !restaurant ? (
-    <h1>{params.restaurantId}</h1>
+    <div className="flex flex-col items-center space-y-10">
+      <Skeleton
+        className=" w-[80%] px-4 py-4 pt-9 pb-9"
+        variant="rectangular"
+        height={118}
+      />
+      <Skeleton className=" w-[60%]" />
+      <Skeleton className=" w-[60%]" />
+      <Skeleton className=" w-[60%]" />
+      <Skeleton className=" w-[60%]" />
+      <Skeleton className=" w-[60%]" />
+      <Skeleton className=" w-[60%]" />
+      <Skeleton className=" w-[60%]" />
+    </div>
   ) : (
     <div className="bg-slate-100 flex flex-col items-center pt-10">
       <div className="flex justify-around px-4 py-4 pt-9 pb-9 border-solid border-b-2 items-center w-[90%] bg-white">

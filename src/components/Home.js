@@ -7,6 +7,7 @@ import { filterData } from "../utils/FilterData";
 import NoResultFound from "../assets/result-not-found-.png";
 import { Link } from "react-router-dom";
 import PostHeader from "./PostHeader";
+import Footer from "./Footer";
 const Home = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filterRestaurants, setFilterRestaurants] = useState([]);
@@ -95,6 +96,7 @@ const Home = () => {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

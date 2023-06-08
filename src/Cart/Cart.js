@@ -44,7 +44,10 @@ function Cart(props) {
         </Link>
         {hasItems && (
           <Link to="/order">
-            <button className="bg-[#8a2b06] cursor-pointer mb-6 border ml-[1rem] rounded-[10px] pr-[1.5rem] pl-[1.5rem] pt-[0.8rem] pb-[0.8rem] border-1 text-white hover:bg-[#5a1a01] hover:border-[#5a1a01] hover:text-white">
+            <button
+              onClick={() => cartCtx.clearCart()}
+              className="bg-[#8a2b06] cursor-pointer mb-6 border ml-[1rem] rounded-[10px] pr-[1.5rem] pl-[1.5rem] pt-[0.8rem] pb-[0.8rem] border-1 text-white hover:bg-[#5a1a01] hover:border-[#5a1a01] hover:text-white"
+            >
               Order
             </button>
           </Link>
