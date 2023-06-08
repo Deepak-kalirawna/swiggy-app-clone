@@ -27,6 +27,20 @@ const Home = () => {
     setAllRestaurants(data?.data?.cards[2]?.data?.data?.cards);
     setFilterRestaurants(data?.data?.cards[2]?.data?.data?.cards);
   }
+  const handleSearch = () => {
+    const data = filterData(searchText, allRestaurants);
+    if (data.length) {
+      setFilterRestaurants(data);
+      setSearching(true);
+    } else {
+      setSearching(false);
+    }
+  };
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      handleSearch();
+    }
+  };
   return (
     <div>
       <PostHeader />
@@ -34,6 +48,7 @@ const Home = () => {
         <TextField
           className="w-1/4 rounded border-2 shadow-xl border-gray-300"
           placeholder="search resturants"
+          onKeyDown={handleKeyDown}
           variant="outlined"
           size="small"
           color="warning"
@@ -47,15 +62,7 @@ const Home = () => {
           variant="outlined"
           size="small"
           color="primary"
-          onClick={() => {
-            const data = filterData(searchText, allRestaurants);
-            if (data.length) {
-              setFilterRestaurants(data);
-              setSearching(true);
-            } else {
-              setSearching(false);
-            }
-          }}
+          onClick={handleSearch}
         >
           Search
         </Button>

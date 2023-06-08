@@ -9,13 +9,12 @@ const RestaurantMenu = () => {
   //console.log(restaurant);
   const itemCards = restaurant?.cards[2].groupedCard.cardGroupMap.REGULAR.cards;
 
-  console.log("itemsCard: resstarant menu", itemCards);
   const basicInfo = restaurant?.cards[0]?.card?.card?.info;
   return !restaurant ? (
     <h1>{params.restaurantId}</h1>
   ) : (
-    <div>
-      <div className="flex justify-around px-4 py-4 pt-9 pb-9 border-solid border-b-2 items-center">
+    <div className="bg-slate-100 flex flex-col items-center pt-10">
+      <div className="flex justify-around px-4 py-4 pt-9 pb-9 border-solid border-b-2 items-center w-[90%] bg-white">
         <div className="">
           <h1 className="font-bold text-2xl">{basicInfo.name}</h1>
 
@@ -31,12 +30,12 @@ const RestaurantMenu = () => {
           </span>
         </div>
       </div>
-      <div className="px-4 py-4 pt-9 pb-9">
+      <div className="px-4 py-4 pt-9 pb-9 w-[40rem] ">
         <h1 className="text-2xl font-bold ">Menu</h1>
-        <div>
-          {itemCards.map((item) => (
+        <div className="space-y-2">
+          {itemCards.map((item, index) => (
             <>
-              <Menu Menu={item}></Menu>
+              <Menu key={index} Menu={item}></Menu>
             </>
           ))}
         </div>

@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import AppLogo from "../assets/Swiggy-img.jpg";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Badge, Button } from "@mui/material";
+import { Badge } from "@mui/material";
 import { Person } from "@mui/icons-material";
 import DiscountIcon from "@mui/icons-material/Discount";
 import { Link } from "react-router-dom";
-
+import CartContext from "../utils/CartContext";
 const Header = () => {
+  const cartCtx = useContext(CartContext);
+  const numberOfCartItems = cartCtx.items.reduce((curNum, item) => {
+    return curNum + item.amount;
+  }, 0);
+
   return (
     <div className=" bg-white flex justify-between items-center shadow-lg">
       <Link to="/" className="logo">
@@ -26,11 +31,11 @@ const Header = () => {
         </Link>
 
         <Link
-          to="/"
+          to="/cart"
           className="mr-10 flex items-center text-black no-underline hover:text-orange-400 cursor-pointer"
         >
           <Badge
-            badgeContent={3}
+            badgeContent={numberOfCartItems}
             // anchorOrigin={{
             //   vertical: "top",
             //   horizontal: "left",
