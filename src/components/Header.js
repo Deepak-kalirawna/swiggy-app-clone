@@ -13,7 +13,7 @@ const Header = () => {
   }, 0);
 
   return (
-    <div className=" bg-white flex justify-between items-center shadow-lg">
+    <div className=" bg-white flex justify-between items-center shadow-lg sticky top-0 w-[100%] z-10">
       <Link to="/" className="logo">
         <img className="w-20 p-4 cursor-pointer" src={AppLogo} alt="app-logo" />
       </Link>

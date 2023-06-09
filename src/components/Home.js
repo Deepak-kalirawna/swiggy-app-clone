@@ -22,16 +22,19 @@ const Home = () => {
   async function getRestaurants() {
     const response = await fetch(
       "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
+      // "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0573992&lng=77.560509&offset=15&sortBy=RELEVANCE&pageType=SEE_ALL&page_type=DESKTOP_SEE_ALL_LISTING"
     );
     const data = await response.json();
     // console.log(data);
+    // setAllRestaurants(data?.data?.cards);
+    // setFilterRestaurants(data?.data?.cards);
 
     setAllRestaurants(data?.data?.cards[2]?.data?.data?.cards);
     setFilterRestaurants(data?.data?.cards[2]?.data?.data?.cards);
   }
   const handleSearch = () => {
     const data = filterData(searchText, allRestaurants);
-    if (data.length) {
+    if (data?.length) {
       setFilterRestaurants(data);
       setSearching(true);
     } else {
@@ -43,7 +46,17 @@ const Home = () => {
       handleSearch();
     }
   };
-  if (filterRestaurants.length === 0) {
+  const debounce = function (fn, d) {
+    let timer;
+    return function () {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        fn();
+      }, d);
+    };
+  };
+  const searchFunction = debounce(handleSearch, 300);
+  if (filterRestaurants?.length === 0) {
     return (
       <>
         <Skeleton
@@ -135,6 +148,7 @@ const Home = () => {
           size="small"
           color="primary"
           onClick={handleSearch}
+          onKeyUp={searchFunction()}
         >
           Search
         </Button>
@@ -144,7 +158,7 @@ const Home = () => {
         <div></div>
         {/* {!filterRestaurants ? <h1>filterRestaurants !!!! Not there</h1>:""} */}
         {searching ? (
-          filterRestaurants.map((restaurant) => {
+          filterRestaurants?.map((restaurant) => {
             return (
               <Link
                 to={"/restaurant/" + restaurant?.data?.id}

@@ -4,6 +4,8 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 import StarIcon from "@mui/icons-material/StarRate";
 import Menu from "./Menu";
 import Skeleton from "@mui/material/Skeleton";
+const CDN_URL =
+  "https://corsproxy.io/?https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
 const RestaurantMenu = () => {
   const params = useParams();
   const restaurant = useRestaurantMenu(params.restaurantId);
@@ -30,18 +32,23 @@ const RestaurantMenu = () => {
     <div className="bg-slate-100 flex flex-col items-center pt-10">
       <div className="flex justify-around px-4 py-4 pt-9 pb-9 border-solid border-b-2 items-center w-[90%] bg-white">
         <div className="">
-          <h1 className="font-bold text-2xl">{basicInfo.name}</h1>
+          <h1 className="font-bold text-2xl">{basicInfo?.name}</h1>
 
-          <p className="text-sm">{basicInfo.cuisines.join(", ")}</p>
+          <p className="text-sm">{basicInfo?.cuisines.join(", ")}</p>
           <p className="text-sm font-semibold">
-            {basicInfo.areaName}, {basicInfo.sla.lastMileTravel} m
+            {basicInfo?.areaName}, {basicInfo?.sla.lastMileTravel} m
           </p>
         </div>
         <div>
-          <span className="bg-green-600 text-white pr-1 pt-1 pb-1">
+          <img
+            className="hover:shadow-2xl rounded w-72 "
+            src={CDN_URL + basicInfo?.cloudinaryImageId}
+            alt="foodimage"
+          />
+          {/* <span className="bg-green-600 text-white pr-1 pt-1 pb-1">
             <StarIcon className="w-[10px] h-[10px] pl-1 " />
-            {basicInfo.avgRating}
-          </span>
+            {basicInfo?.avgRating}
+          </span> */}
         </div>
       </div>
       <div className="px-4 py-4 pt-9 pb-9 w-[40rem] ">
