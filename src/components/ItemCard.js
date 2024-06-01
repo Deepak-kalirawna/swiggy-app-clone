@@ -3,6 +3,7 @@ import CartContext from "../utils/CartContext";
 import { FOODITEM_IMG_URL } from "../utils/UrlData";
 import { Button } from "@mui/material";
 import { Rating } from "@mui/material";
+import FoodImg from "../assets/food-img.jpg";
 const ItemCard = ({ foodItem }) => {
   const [addbtn, setAddBtn] = useState(false);
   const cartCtx = useContext(CartContext);
@@ -49,8 +50,8 @@ const ItemCard = ({ foodItem }) => {
         <div className="flex flex-col items-center w-60 h-13 space-y-2 ">
           {foodItem?.card?.info?.imageId && (
             <img
-              className="rounded-2xl object-contain"
-              src={FOODITEM_IMG_URL + foodItem?.card?.info?.imageId}
+              className="rounded-2xl object-contain w-40 h-20"
+              src={FoodImg}
               alt="foodimage"
             />
           )}

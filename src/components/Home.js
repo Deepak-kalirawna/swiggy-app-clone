@@ -25,12 +25,16 @@ const Home = () => {
       // "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0573992&lng=77.560509&offset=15&sortBy=RELEVANCE&pageType=SEE_ALL&page_type=DESKTOP_SEE_ALL_LISTING"
     );
     const data = await response.json();
-    // console.log(data);
+    // console.log( "data from swiggy", data?.data?.cards[2]?.card?.card?.gridElements.infoWithStyle.restaurants );
     // setAllRestaurants(data?.data?.cards);
     // setFilterRestaurants(data?.data?.cards);
 
-    setAllRestaurants(data?.data?.cards[2]?.data?.data?.cards);
-    setFilterRestaurants(data?.data?.cards[2]?.data?.data?.cards);
+    setAllRestaurants(
+      data?.data?.cards[2]?.card?.card?.gridElements.infoWithStyle.restaurants
+    );
+    setFilterRestaurants(
+      data?.data?.cards[2]?.card?.card?.gridElements.infoWithStyle.restaurants
+    );
   }
   const handleSearch = () => {
     const data = filterData(searchText, allRestaurants);
@@ -161,13 +165,13 @@ const Home = () => {
           filterRestaurants?.map((restaurant) => {
             return (
               <Link
-                to={"/restaurant/" + restaurant?.data?.id}
-                key={restaurant.data.id}
+                to={"/restaurant/" + restaurant?.info?.id}
+                key={restaurant.info.id}
                 className="text-black no-underline"
               >
                 <RestaurantCard
-                  key={restaurant.data.id}
-                  restaurant={restaurant.data}
+                  key={restaurant.info.id}
+                  restaurant={restaurant.info}
                 />
               </Link>
             );
@@ -175,7 +179,7 @@ const Home = () => {
         ) : (
           <div>
             <img
-              classname="w-[50%vw] mx-auto"
+              className="w-[50%vw] mx-auto"
               src={NoResultFound}
               alt="NO RESULT FOUND"
             />

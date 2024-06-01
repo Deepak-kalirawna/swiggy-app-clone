@@ -1,18 +1,16 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
-import StarIcon from "@mui/icons-material/StarRate";
+// import StarIcon from "@mui/icons-material/StarRate";
 import Menu from "./Menu";
 import Skeleton from "@mui/material/Skeleton";
-const CDN_URL =
-  "https://corsproxy.io/?https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
+import RestaurantImg from "../assets/resturant-img.png";
 const RestaurantMenu = () => {
   const params = useParams();
   const restaurant = useRestaurantMenu(params.restaurantId);
-  //console.log(restaurant);
-  const itemCards = restaurant?.cards[2].groupedCard.cardGroupMap.REGULAR.cards;
+  const itemCards = restaurant?.cards[4].groupedCard.cardGroupMap.REGULAR.cards;
 
-  const basicInfo = restaurant?.cards[0]?.card?.card?.info;
+  const basicInfo = restaurant?.cards[2]?.card?.card?.info;
   return !restaurant ? (
     <div className="flex flex-col items-center space-y-10">
       <Skeleton
@@ -42,7 +40,7 @@ const RestaurantMenu = () => {
         <div>
           <img
             className="hover:shadow-2xl rounded w-72 "
-            src={CDN_URL + basicInfo?.cloudinaryImageId}
+            src={RestaurantImg}
             alt="foodimage"
           />
           {/* <span className="bg-green-600 text-white pr-1 pt-1 pb-1">
